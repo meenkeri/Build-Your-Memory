@@ -17,9 +17,9 @@ public class RecallActivity extends Activity {
 	private TextView textView;
 	private EditText editText;
 	private int j = 0;
-	private final int i = 0;
 	private String[] input;
 	public int score = 0;
+	private boolean wrong;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class RecallActivity extends Activity {
 	}
 
 	public void doSubmitButton(View view) {
-		// textView.setText(++i);
+		// textView.setText(j + 1);
 		if (editText.getText().toString().length() == 0) {
 			new AlertDialog.Builder(this).setTitle(EMPTY_MSG)
 					.setIcon(android.R.drawable.ic_dialog_alert)
@@ -47,7 +47,20 @@ public class RecallActivity extends Activity {
 			editText.setText(EMPTY);
 			return;
 		} else {
-			Toast.makeText(this, WRONG, Toast.LENGTH_SHORT).show();
+			if (wrong) {
+				Toast.makeText(this, "That was " + WRONG, Toast.LENGTH_SHORT)
+						.show();
+				Toast.makeText(this,
+						"The answer was " + "\"" + input[j] + "\"",
+						Toast.LENGTH_SHORT).show();
+				j++;
+				editText.setText(EMPTY);
+				wrong = false;
+				return;
+			}
+			Toast.makeText(this, WRONG + "\n" + "Try again", Toast.LENGTH_SHORT)
+					.show();
+			wrong = true;
 			editText.setText(EMPTY);
 			return;
 		}
