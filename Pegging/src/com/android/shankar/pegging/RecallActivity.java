@@ -27,12 +27,12 @@ public class RecallActivity extends Activity {
 		setContentView(R.layout.recall);
 		textView = (TextView) findViewById(R.id.textView2);
 		editText = (EditText) findViewById(R.id.editText1);
+		textView.setText("1");
 		Intent intent = getIntent();
 		input = intent.getStringArrayExtra("input");
 	}
 
 	public void doSubmitButton(View view) {
-		// textView.setText(j + 1);
 		if (editText.getText().toString().length() == 0) {
 			new AlertDialog.Builder(this).setTitle(EMPTY_MSG)
 					.setIcon(android.R.drawable.ic_dialog_alert)
@@ -45,6 +45,7 @@ public class RecallActivity extends Activity {
 			score++;
 			Toast.makeText(this, CORRECT, Toast.LENGTH_SHORT).show();
 			editText.setText(EMPTY);
+			textView.setText(j + 1 + EMPTY);
 			return;
 		} else {
 			if (wrong) {
@@ -55,6 +56,7 @@ public class RecallActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 				j++;
 				editText.setText(EMPTY);
+				textView.setText(j + 1 + EMPTY);
 				wrong = false;
 				return;
 			}
