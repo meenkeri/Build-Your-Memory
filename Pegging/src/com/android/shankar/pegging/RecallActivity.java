@@ -40,7 +40,7 @@ public class RecallActivity extends Activity {
 			return;
 		}
 		String word = editText.getText().toString();
-		if (word.equals(input[j])) {
+		if (word.equalsIgnoreCase(input[j])) {
 			j++;
 			score++;
 			Toast.makeText(this, CORRECT, Toast.LENGTH_SHORT).show();
